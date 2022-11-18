@@ -1,11 +1,12 @@
 name: Reusable Deploy
-on: workflow_call
-  inputs:
-    artifact-name:
-      description: Name of Deploable artifacvt
-      required: false
-      default: dist
-      type: string
+on: 
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: Name of Deploable artifacvt
+        required: false
+        default: dist
+        type: string
 jobs:
   deploy:
     runs-on: ubuntu-latest
