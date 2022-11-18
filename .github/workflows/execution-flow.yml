@@ -86,4 +86,4 @@ report:
     - name: Output
       run: |
         echo "Something went wrong"
-        echo "${{ github }}"
+        echo "${{ toJson(github) }}"
