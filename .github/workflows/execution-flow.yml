@@ -13,9 +13,10 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules # uses local node_modules instead of ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs != 'true' # from id above
         run: npm ci
       - name: Lint code
         run: npm run lint
@@ -28,9 +29,10 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules # uses local node_modules instead of ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs != 'true' # from id above
         run: npm ci
       - name: Test code
         id: run-tests
@@ -45,18 +47,16 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-
-
-
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: node_modules # uses local node_modules instead of ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs != 'true' # from id above
         run: npm ci
       - name: Build website
         id: build-website
