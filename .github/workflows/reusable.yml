@@ -3,6 +3,6 @@ on: workflow_call
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    step:
+    steps:
       - name: Output Info
         run: echo "Deploying"
